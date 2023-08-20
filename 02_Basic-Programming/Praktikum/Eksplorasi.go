@@ -7,6 +7,7 @@ import (
 )
 
 func main(){
+	//Palindrome
 	fmt.Printf("masukkan kata: ")
 
   	scanner := bufio.NewScanner(os.Stdin)
