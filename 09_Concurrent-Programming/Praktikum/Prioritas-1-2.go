@@ -2,22 +2,32 @@ package main
 
 import (
 	"fmt"
-	"time"
+	"sync"
+	"math"
 )
 
-func main(){
+func multiple3(n int){
 	c := make(chan int)
+	var wg sync.WaitGroup
 
+	wg.Add(1)
 	go func(){
-		for i:=3; i<=30; i+=3{
+		defer wg.Done()
+		for i:=3; i<=n; i+=3{
 			c <- i
 		}
 	}()
 
+	wg.Add(1)
 	go func(){
-		for i:=0; i<10; i++{
+		defer wg.Done()
+		for i:=0; i<int(math.Floor(float64(n/3))); i++{
 			fmt.Println(<-c)
 		}
 	}()
-	time.Sleep(10 * time.Millisecond)
+	wg.Wait()
+}
+
+func main(){
+	multiple3(31)
 }

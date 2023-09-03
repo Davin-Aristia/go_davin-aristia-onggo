@@ -5,7 +5,7 @@ Dalam sebuah pencarian Big Search, search engine tersebut akan mencari mengenai 
 
 Go Concurrency (goroutines) menggabungkan konsep parallel program dengan concurrent program. Biaya pembuatan goroutine terbilang kecil jika dibandingkan dengan thread. Thread adalah proses yang ringan, atau dengan kata lain thread adalah unit yang mengeksekusi kode di bawah program. Penggunaan goroutine bisa dengan cara menambahkan go di depan pemanggilan sebuah function. Gomaxprocs digunakan untuk mengontrol jumlah thread sistem operasi yang tersedia untuk eksekusi goroutine pada program go tertentu
 
-Channel merupakan objek komunikasi yang dimana digunakan oileh goroutine untuk berkomunikasi antara satu dengan yang lainnya. Cara deklarasi sebuah channel adalah dengan menggunakan <- contohnya adalah data := <- c. Dalam channel juga terdapat istilah:
+Channel merupakan objek komunikasi yang dimana digunakan oleh goroutine untuk berkomunikasi antara satu dengan yang lainnya. Cara deklarasi sebuah channel adalah dengan menggunakan <- contohnya adalah data := <- c. Dalam channel juga terdapat istilah:
 - Unbuffered Channel: yang dimana Unbuffered artinya sebuah channel hanya bisa menyimpan sebuah data dan harus dikeluarkan terlebih dahulu sebelum diisi dengan data lainnya.
 - Buffered Channel: menentukan seberapa banyak data yang bisa disimpan oleh sebuah channel dalam sebuah waktu.
 
