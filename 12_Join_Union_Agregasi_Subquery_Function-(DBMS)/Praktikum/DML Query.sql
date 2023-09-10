@@ -155,7 +155,7 @@ DELETE FROM products WHERE product_type_id = 1;
 
 -- JOIN, UNION, Subquery, Function
 -- Nomor 1
-
+SELECT * FROM transactions WHERE user_id = 1 UNION SELECT * FROM transactions WHERE user_id = 2;
 
 -- Nomor 2
 SELECT SUM(total_price) 'Total Price' FROM transactions WHERE user_id = 1;
@@ -167,9 +167,10 @@ SELECT COUNT(product_id) FROM transaction_details WHERE product_id IN (SELECT id
 SELECT p.*, pt.name productType FROM products p INNER JOIN product_types pt ON p.product_type_id = pt.id;
 
 -- Nomor 5
-SELECT t.*, p.name, u.name 
-FROM transactions t LEFT JOIN products p ON 
-LEFT JOIN users u 
+SELECT t.*, u.name user_name, p.name
+FROM transactions t LEFT JOIN users u ON t.user_id = u.id
+LEFT JOIN transaction_details td ON td.transaction_id = t.id
+LEFT JOIN products p ON td.product_id = p.id;
 
 -- Nomor 6
 DELIMITER $$
