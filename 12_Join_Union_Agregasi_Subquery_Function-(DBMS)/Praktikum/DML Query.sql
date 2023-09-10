@@ -54,6 +54,7 @@ INSERT INTO users (name, status, dob, gender) VALUES
     ('Jessica', 1, '2000-05-30', 'P'),
     ('Angel', 1, '1999-12-21', 'P');
     
+-- Nomor 1I
 INSERT INTO transactions (user_id, payment_method_id, status, total_qty, total_price) VALUES
     (1, 1, 'Paid', 28, 292000),
     (1, 2, 'Paid', 4, 16000000),
@@ -71,6 +72,7 @@ INSERT INTO transactions (user_id, payment_method_id, status, total_qty, total_p
     (5, 2, 'Partial', 21, 4540000),
     (5, 1, 'Paid', 19, 4696000);
 
+-- Nomor 1J
 INSERT INTO transaction_details (transaction_id, product_id, status, qty, price) VALUES
     (1, 1, 'Paid', 6, 72000),
     (1, 2, 'Paid', 20, 100000),
@@ -137,18 +139,54 @@ UPDATE products SET name = 'product dummy' WHERE id = 1;
 UPDATE transaction_details SET qty = 3 WHERE product_id = 1;
 
 -- Nomor 4A
+DELIMITER $$
+CREATE TRIGGER delete_all_data_product BEFORE DELETE ON products FOR EACH ROW
+BEGIN
+DELETE FROM transaction_details WHERE product_id = OLD.id;
+DELETE FROM product_descriptions WHERE product_id = OLD.id;
+END$$
+DELIMITER ;
 DELETE FROM products WHERE id = 1;
+
+-- Nomor 4B
+DELETE FROM products WHERE product_type_id = 1;
+
+
 
 -- JOIN, UNION, Subquery, Function
 -- Nomor 1
 
+
 -- Nomor 2
 SELECT SUM(total_price) 'Total Price' FROM transactions WHERE user_id = 1;
+
 -- Nomor 3
 SELECT COUNT(product_id) FROM transaction_details WHERE product_id IN (SELECT id FROM products WHERE product_type_id = 2);
 
+-- Nomor 4
+SELECT p.*, pt.name productType FROM products p INNER JOIN product_types pt ON p.product_type_id = pt.id;
 
-SELECT * FROM transaction_details;
-SELECT * FROM operators;
-DELETE FROM products WHERE id BETWEEN 1 and 100;
-DROP DATABASE praktikum_database;
+-- Nomor 5
+SELECT t.*, p.name, u.name 
+FROM transactions t LEFT JOIN products p ON 
+LEFT JOIN users u 
+
+-- Nomor 6
+DELIMITER $$
+CREATE TRIGGER delete_transaction_details BEFORE DELETE ON transactions FOR EACH ROW
+BEGIN
+DELETE FROM transaction_details WHERE transaction_id = OLD.id;
+END$$
+DELIMITER ;
+
+-- Nomor 7
+DELIMITER $$
+CREATE TRIGGER update_total_qty BEFORE DELETE ON transaction_details FOR EACH ROW
+BEGIN
+UPDATE transactions SET total_qty = (SELECT SUM(qty) FROM transaction_details WHERE transaction_id = OLD.transaction_id)-OLD.qty WHERE id = OLD.transaction_id;
+END$$
+DELIMITER ;
+
+-- Nomor 8
+SELECT * FROM products WHERE id NOT IN (SELECT product_id FROM transaction_details GROUP BY product_id);
+

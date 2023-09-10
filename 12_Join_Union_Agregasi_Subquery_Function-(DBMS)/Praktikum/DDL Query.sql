@@ -22,8 +22,8 @@ CREATE TABLE products(
     status SMALLINT,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    CONSTRAINT fk_product_type FOREIGN KEY (product_type_id) REFERENCES product_types(id),
-    CONSTRAINT fk_product_operator FOREIGN KEY (operator_id) REFERENCES operators(id)
+    CONSTRAINT fk_product_type FOREIGN KEY (product_type_id) REFERENCES product_types(id) ON DELETE CASCADE,
+    CONSTRAINT fk_product_operator FOREIGN KEY (operator_id) REFERENCES operators(id) ON DELETE CASCADE
 );
 CREATE TABLE product_descriptions(
 	id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
