@@ -1,0 +1,9 @@
+//Nomor 3A
+HGETALL users
+
+// Nomor 3B
+MATCH (u:users)
+RETURN u;
+
+// Nomor 3C
+SELECT * FROM users;

@@ -1,0 +1,15 @@
+API merupakan akronim dari Application Programming Interface (Antarmuka Pemrograman Aplikasi). Kata Aplikasi pada API merujuk pada perangkat lunak dengan fungsi yang berbeda. Kata Antarmuka dapat diartikan sebagai kontrak layanan antara dua aplikasi. API adalah mekanisme yang memungkinkan dua komponen perangkat lunak untuk saling berkomunikasi menggunakan serangkaian definisi dan protokol. Misalnya, sistem perangkat lunak badan meteorologi, klimatologi, dan geofisika (BMKG) berisi data cuaca harian. Aplikasi cuaca di ponsel “berkomunikasi” dengan sistem ini melalui API dan menampilkan pembaruan cuaca harian di ponsel.
+
+Kegunaan dan implementasi RESTful API adalah bisa digunakan untuk mengintegrasikan aplikasi yang berbasis FrontEnd dengan aplikasi berbasis BackEnd. Jenis aplikasi berbasis FrontEnd bermacam-macam bisa IOS, windows, android, dan web. Cara kerja dari API atau RESTful API ketika digunakan untuk mengintegrasikan antara aplikasi FrontEnd dan BackEnd adalah biasanya terjadi proses request data dari FrontEnd ke BackEnd. Ketika proses request sudah dilakukan, maka API akan memberikan sebuah respon ke FrontEnd sesuai permintaan yang diminta
+
+Keunggulan dari RESTful API adalah dengan hanya 1 aplikasi BackEnd, bisa menyiapkan semua data yang diperlukan oleh FrontEnd seperti IOS, ANdroid, Windows, dan Web. API juga bisa digunakan untuk integrasi antara BackEnd dengan BackEnd. Contohnya adalah sebuah service sepulsa yang merupakan aplikasi backend yang menyediakan layanan atau service kepada pelanggan agar pelanggan bisa melakukan pembelian pulsa secara online. Sepulsa ingin sebuah fitur pembayaran, untuk memiliki sebuah pembayaran sebuah bank, maka sepulsa harus terkoneksi ke bank yang harus dituju, misalnya Bank A, Bank B, dan Bank C. Sepulsa memilih untuk melakukan integrasi kepada sebuah service MidTrans yang khusus menangani pembayaran online yang sudah terkoneksi dengan Bank A, Bank B, dan Bank C. Maka dengan sepulsa terkoneksi dengan MidTrans, sepulsa sudah memiliki layanan pembayaran Bank A,B, dan C tersebut
+
+API Testing Tools merupakan sebuah tools yang bisa digunakan untuk testing API seperti Katalon, Apache J Meter, SoapUI, dan Postman. Postman adalah HTTP Client yang bisa digunakan untuk melakukan testing sebuah webservice, postman memudahkan pengujian, pengembangan, dan mendokumentasikan API dengan memungkinkan pengguna dengan cepat menyusun permintaan HTTP yang sederhana dan kompleks
+
+Open API adalah API yang bisa diakses secara publik atau terbuka sehingga dapat digunakan secara bebas oleh para developer
+
+Untuk sebuah API pada Golang dibutuhkan library net/http dan encoding/json. Package net/http digunakan untuk membuat sebuah server API dan consume sebuah API. Sedangkan encoding/json adalah untuk:
+- Decode JSON to Object Struct
+- Decode JSON to MAP[string] interface{} & interface{}
+- Decode Array JSON to Array Object
+- Encode Object to JSON String
