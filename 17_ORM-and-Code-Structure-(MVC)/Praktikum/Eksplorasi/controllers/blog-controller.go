@@ -56,6 +56,15 @@ func CreateBlogController(c echo.Context) error {
 		})
 	}
 
+	// Pengecekan apakah user dengan id tersebut ada dalam database
+	_, err := repositories.GetUserByID(int(blog.UserId))
+	if err != nil {
+		if gorm.IsRecordNotFoundError(err) {
+			return echo.NewHTTPError(http.StatusNotFound, "no user found for id " + strconv.Itoa(int(blog.UserId)))
+		}
+		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
+	}
+
 	responseData, err := repositories.InsertBlog(blog)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]any{
@@ -105,6 +114,15 @@ func UpdateBlogController(c echo.Context) error {
 
 	updateData := models.Blog{}
 	c.Bind(&updateData)
+
+	// Pengecekan apakah user dengan id tersebut ada dalam database
+	_, err := repositories.GetUserByID(int(updateData.UserId))
+	if err != nil {
+		if gorm.IsRecordNotFoundError(err) {
+			return echo.NewHTTPError(http.StatusNotFound, "no user found for id " + strconv.Itoa(int(updateData.UserId)))
+		}
+		return echo.NewHTTPError(http.StatusBadRequest, err.Error())
+	}
 
 	// Pengecekan apakah blog dengan id tersebut ada dalam database
 	blog, err := repositories.GetBlogByID(id)

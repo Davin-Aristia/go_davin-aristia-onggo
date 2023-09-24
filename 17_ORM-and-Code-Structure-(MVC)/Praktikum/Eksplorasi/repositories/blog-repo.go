@@ -42,7 +42,7 @@ func DeleteBlogByID(id int) error {
 }
 
 func UpdateBlogByID(id int, datablog, updateData models.Blog) (models.Blog, error) {
-	tx := config.DB.Model(&datablog).Updates(map[string]interface{}{"title": updateData.Title, "content": updateData.Content})
+	tx := config.DB.Model(&datablog).Updates(map[string]interface{}{"userId":updateData.UserId, "title": updateData.Title, "content": updateData.Content})
 	if tx.Error != nil {
 		return models.Blog{}, tx.Error
 	}

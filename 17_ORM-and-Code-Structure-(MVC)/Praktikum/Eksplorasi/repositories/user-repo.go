@@ -8,7 +8,8 @@ import (
 func GetAllUsers() ([]models.User, error) {
 	var datausers []models.User
 
-	tx := config.DB.Find(&datausers)
+	// tx := config.DB.Find(&datausers)
+	tx := config.DB.Preload("Blogs").Find(&datausers)
 	if tx.Error != nil {
 		return nil, tx.Error
 	}
@@ -18,7 +19,7 @@ func GetAllUsers() ([]models.User, error) {
 func GetUserByID(id int) (models.User, error) {
 	var datauser models.User
 
-	tx := config.DB.First(&datauser, id)
+	tx := config.DB.Preload("Blogs").First(&datauser, id)
 	if tx.Error != nil {
 		return models.User{}, tx.Error
 	}
