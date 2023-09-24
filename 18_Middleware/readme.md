@@ -45,7 +45,7 @@ Rate Limiter membatasi jumlah request kepada server. Mencegah request yang terla
 
 Logger Middleware melakukan logging informasi HTTP Request, sebagai foorprint, dan submer data untuk analytics. Contoh implementasi Log Middleware:
     e.Use(middleware.LoggerWithConfig(middleware.LoggerConfig{
-        Format: `[${time_rfc3339}] ${status} ${method} ${host}${path} %{latency_human}` + "\n",
+        Format: `[${time_rfc3339}] ${status} ${method} ${host}${path} ${latency_human}` + "\n",
     }))
 
 Auth Middleware digunakan untuk mengidentifikasi user dan mengamankan data dan informasi. Beberapa authentication middleware adalah:
