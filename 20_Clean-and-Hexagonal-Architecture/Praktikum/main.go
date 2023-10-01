@@ -2,9 +2,10 @@ package main
 
 import (
 	"belajar-go-echo/config"
-	"belajar-go-echo/controller"
 
 	"github.com/labstack/echo/v4"
+	"belajar-go-echo/route"
+
 )
 
 func main() {
@@ -19,7 +20,7 @@ func main() {
 	}
 
 	app := echo.New()
-	app.GET("/users", controller.GetAllUsers(db))
-	app.POST("/users", controller.CreateUser(db))
-	app.Start(":8080")
+
+	route.NewRoute(app, db)
+	app.Logger.Fatal(app.Start(":8080"))
 }
