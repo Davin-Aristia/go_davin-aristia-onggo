@@ -29,7 +29,7 @@ jobs:
       uses: docker/build-push-action@v4
       with:
         context: .
-        file: ./Dockerfile
+        file: ./23_CI-CD/Dockerfile
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/cicd:latest
 
